@@ -1,2 +1,1 @@
-# fe-dog-shelter-app
-
+This is the frontend of my Dog Shelter Application
