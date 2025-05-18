@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { getAllDogs } from "../../api/dogApi";
 import DogCard from "./DogCard";
+import { login } from "../../api/authApi";
 
 function DogList() {
     const [dogs, setDogs] = useState([]);
@@ -21,6 +22,7 @@ function DogList() {
     return(
         <div className="dog-list-container">
             <h2>Dog List</h2>
+            <button onClick={()=> login()}>APASA</button>
             <button
                 onClick={fetchDogs}
                 disabled={loading}

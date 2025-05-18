@@ -1,5 +1,3 @@
-
-
 function DogCard({ dog }) {
   return (
     <li className="dog-card">
