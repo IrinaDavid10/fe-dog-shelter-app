@@ -1,8 +1,7 @@
-import apiClient from "./apiClient";
-
+import axios from "axios";
 const API_URL = 'http://localhost:8080';
 
 export const getAllDogs = async() => {
-    const response = await apiClient.get('/dogs');
+    const response = await axios.get(API_URL + "/dogs", {headers:{Authorization:''}}) 
     return response.data;
 }

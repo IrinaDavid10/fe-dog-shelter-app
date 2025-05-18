@@ -1,73 +1,54 @@
-// import { useState } from "react";
+import { useEffect, useState } from "react";
+import {loginAdmin} from "../../api/authApi.js";
+function LoginForm({a,b}){
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    
 
-// function LoginForm({onLoginSuccess}){
-//     const [username, setUsername] = useState('');
-//     const [password, setPassword] = useState('');
-//     const [error, setError] = useState('');
-//     const [loading, setLoading] = useState(false);
+    const handleSubmit = async(event) =>{
+        event.preventDefault();
+        const response = await loginAdmin(username,password);
+        if(response === null){
+            alert("Cannot login");
+            b(false);
+        }else{
+        alert(JSON.stringify(response));
+        b(true);
+        }
+    }
 
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-//         setLoading(true);
-//         setError('');
+    useEffect(()=>{
+        console.log("Logged in: " +a);
+    },[a])
 
-//         try{
-//           //  const data = await loginAdmin(username, password);
-
-//             const role = setAuthData(data.token);
-
-//             if(onLoginSuccess){
-//                 onLoginSuccess(role);
-//             }
-//         }catch (err) {
-//             setError('Login failed. Please check your credentials.')
-
-//         }finally{
-//             setLoading(false);
-//         }
-//     };
-
-//     return (
-//         <div className="login-form-container">
-//             <h2>Admin Login</h2>
-//             {error && <p className="error-message">{error}</p>}
-
-//             <form onSubmit={handleSubmit}>
-//                 <div className="form-group">
-//                     <label htmlFor="username">
-//                         Username:
-//                     </label>
-//                     <input
-//                     type="text"
-//                     id="username"
-//                     value={username}
-//                     onChange={(e) => setUsername(e.target.value)}
-//                     required
-//                     />
-//                 </div>
-//                 <br/>
-//                 <div className="form-group">
-//                     <label htmlFor="password">
-//                         Password:
-//                     </label>
-//                     <input
-//                     type="password"
-//                     id="password"
-//                     value={password}
-//                     onChange={(e) => setPassword(e.target.value)}
-//                     required
-//                     />
-//                 </div>
-//                 <br/>
-//                 <button
-//                 type="submit"
-//                 className="login-button"
-//                 disabled={loading}
-//                 >
-//                 {loading ? 'Logging in...' : 'Login'}
-//                 </button>
-//             </form>
-//         </div>
-//     );
-// }
-// export default LoginForm;
+    return(
+        <>
+        {a ? "You are logged in" : "Cannot log you in"}
+        <form onSubmit={handleSubmit}>
+            <label>
+                Enter username:
+                <input
+                type = "text"
+                name="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                />
+            </label>
+            <br/>
+            <label>
+                Enter password:
+                <input
+                type = "password"
+                name = "password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                />
+            </label>
+            <br/>
+            <button type="submit">Login</button>
+        </form>
+        </>
+    );
+    
+}
+export default LoginForm;
