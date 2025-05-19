@@ -6,15 +6,20 @@ import DogList from './features/dogs/components/DogList'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [dogs, setDogs] = useState([]);
+
+  const clearDogs = () => {
+    setDogs([]);
+  };
 
   return (
     <div>
     <h1>Hello World!</h1>
     <LoginForm a={isLoggedIn} b={setIsLoggedIn} />
-    {isLoggedIn ?   <AdminDashboard /> : ""}
+    {isLoggedIn ? <AdminDashboard clearDogs = {clearDogs} setIsLoggedIn={setIsLoggedIn}/> : ""}
   
     <hr />
-    <DogList />
+    <DogList dogs = {dogs} setDogs = {setDogs}/>
     </div>
   )
 }

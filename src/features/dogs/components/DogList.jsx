@@ -2,8 +2,8 @@ import { useState } from "react";
 import { getAllDogs } from "../../api/dogApi";
 import DogCard from "./DogCard";
 
-function DogList() {
-    const [dogs, setDogs] = useState([]);
+function DogList({dogs, setDogs}) {
+    // const [dogs, setDogs] = useState([]);
     const [loading, setLoading] = useState(false);
   
     const fetchDogs = async () => {

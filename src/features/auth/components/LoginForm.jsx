@@ -1,9 +1,19 @@
 import { useEffect, useState } from "react";
 import {loginAdmin} from "../../api/authApi.js";
+
+
 function LoginForm({a,b}){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     
+    // verifica daca userul este deja logat
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if(token){
+            console.log("Found existing token:",token);
+            b(true);
+        }
+    },[]);
 
     const handleSubmit = async(event) =>{
         event.preventDefault();
@@ -12,6 +22,7 @@ function LoginForm({a,b}){
             alert("Cannot login");
             b(false);
         }else{
+        localStorage.setItem('token', response.token);
         alert(JSON.stringify(response));
         b(true);
         }
