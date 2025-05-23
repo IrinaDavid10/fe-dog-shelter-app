@@ -28,10 +28,7 @@ export const createDog = async(name, breed) => {
 }
 
 export const getDog = async(id) => {
+    // {TOD: try catch + token }
      const response = await axios.get(API_URL + `/dogs/${id}`);
-    console.log("Full response:", response);
-    console.log("Response data:", response.data);
-    console.log("Dog name:", response.data.name);
-    console.log("Dog breed:", response.data.breed);
     return response.data;
 }

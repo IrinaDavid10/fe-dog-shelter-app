@@ -9,6 +9,7 @@ function App() {
  
   const [dogs, setDogs] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showDogCreationForm, setShowDogCreationForm] = useState(false);
 
   const clearDogs = () => {
     setDogs([]);
@@ -17,10 +18,10 @@ function App() {
     <div>
     <h1>Hello World!</h1>
     <LoginForm isLoggedIn = {isLoggedIn} setIsLoggedIn = {setIsLoggedIn} />
-    {isLoggedIn ? <AdminDashboard clearDogs = {clearDogs} setIsLoggedIn={setIsLoggedIn}/> : ""}
+    {isLoggedIn ? <AdminDashboard clearDogs = {clearDogs} setIsLoggedIn={setIsLoggedIn} showDogCreationForm={showDogCreationForm} setShowDogCreationForm = {setShowDogCreationForm}/> : ""}
     <hr />
     <DogList dogs = {dogs} setDogs = {setDogs}/>
-    {isLoggedIn ? < DogCreationForm/> : ""}
+    {isLoggedIn && showDogCreationForm ? < DogCreationForm  /> : ""}
     </div>
   )
 }
