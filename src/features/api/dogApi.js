@@ -28,7 +28,17 @@ export const createDog = async(name, breed) => {
 }
 
 export const getDog = async(id) => {
-    // {TOD: try catch + token }
-     const response = await axios.get(API_URL + `/dogs/${id}`);
+    try{
+    const token = localStorage.getItem('token');
+    console.log("Token being sent:", token);
+    const response = await axios.get(API_URL + `/dogs/${id}`, {
+        headers:{
+            Authorization: token ? `Bearer ${token}` : ''
+        }
+        });
     return response.data;
+    }catch(e){
+        console.error("Error finding dog with specified id", e);
+        return null;
+    }
 }
