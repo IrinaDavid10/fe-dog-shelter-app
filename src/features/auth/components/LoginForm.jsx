@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {loginAdmin} from "../../api/authApi.js";
 
 
-function LoginForm({a,b}){
+function LoginForm({isLoggedIn, setIsLoggedIn}){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     
@@ -11,7 +11,7 @@ function LoginForm({a,b}){
         const token = localStorage.getItem('token');
         if(token){
             console.log("Found existing token:",token);
-            b(true);
+            setIsLoggedIn(true);
         }
     },[]);
 
@@ -20,21 +20,21 @@ function LoginForm({a,b}){
         const response = await loginAdmin(username,password);
         if(response === null){
             alert("Cannot login");
-            b(false);
+            setIsLoggedIn(false);
         }else{
         localStorage.setItem('token', response.token);
         alert(JSON.stringify(response));
-        b(true);
+        setIsLoggedIn(true);
         }
     }
 
     useEffect(()=>{
-        console.log("Logged in: " +a);
-    },[a])
+        console.log("Logged in: " +isLoggedIn);
+    },[isLoggedIn])
 
     return(
         <>
-        {a ? "You are logged in" : "Cannot log you in"}
+        {isLoggedIn ? "You are logged in" : "Cannot log you in"}
         <form onSubmit={handleSubmit}>
             <label>
                 Enter username:
