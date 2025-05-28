@@ -42,3 +42,13 @@ export const getDog = async(id) => {
         return null;
     }
 }
+
+export const deleteDog = async(id) => {
+    try{
+        const response = await axios.delete(API_URL + `/dogs/${id}`);
+        return response.data;
+    }catch(e){
+        console.log("Error deleting dog with specified id");
+        return null;
+    }
+}

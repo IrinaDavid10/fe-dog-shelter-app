@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { createDog } from "../../api/dogApi";
 
 function DogCreationForm(){
