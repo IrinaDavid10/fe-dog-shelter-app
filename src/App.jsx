@@ -25,7 +25,9 @@ function App() {
     <hr />
     <DogList dogs = {dogs} setDogs = {setDogs}/>
     {isLoggedIn && showDogCreationForm ? < DogCreationForm  /> : ""}
-    {showDogDeleteForm ? <DogDeleteForm/> : ""}
+    {/* {showDogDeleteForm ? <DogDeleteForm/> : ""} */}
+    {showDogDeleteForm ? < DogDeleteForm/> : ""}
+    <button onClick={() => setShowDogDeleteForm(!showDogDeleteForm)}>DELETE IN APP</button>
     </div>
   )
 }

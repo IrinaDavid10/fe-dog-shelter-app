@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getDog } from "../../api/dogApi";
 
-function AdminDashboard({setIsLoggedIn, clearDogs, setShowDogCreationForm, showDogCreationForm, setShowDogDeleteForm, showDogDeleteForm }){
+function AdminDashboard({setIsLoggedIn, clearDogs, setShowDogCreationForm, showDogCreationForm}){
     
     const [dogSearchId, setDogSearchId] = useState("");
     
@@ -37,7 +37,7 @@ function AdminDashboard({setIsLoggedIn, clearDogs, setShowDogCreationForm, showD
             <h3>Admin Actions</h3>
             <button className="admin-button" onClick={() => setShowDogCreationForm(!showDogCreationForm)}>Add New Dog</button>
             <button className="admin-button">View Appointments</button>
-            <button className="admin-button" onClick={() => setShowDogDeleteForm(!showDogDeleteForm)}>Delete Dog</button>
+            <button className="admin-button" >Delete Dog</button>
             <button className="admin-button">Edit Dog</button>
         </div>
     

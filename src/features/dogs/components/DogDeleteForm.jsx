@@ -27,7 +27,7 @@ function DogDeleteForm() {
                     onChange={(e) => setDogDeleteId(e.target.value)}>
                 </input>
             </label>
-            <br />
+             <br></br>
             <button type="submit">Delete</button>
         </form>
     );
